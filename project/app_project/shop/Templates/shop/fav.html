@@ -1,0 +1,36 @@
+{% extends 'shop/layout/main.html' %}
+{%block title%}
+Registeration | online shopping
+{%endblock title%} 
+{%block content%}
+<section class="bg-light py-4 my-5" >
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Favourite Items</h4>
+                <hr style="border-color: #b8bfc2;">
+            </div>
+                
+                <table class="">
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Amount</th>
+                    </tr> 
+                    {% for item in favourite %}
+                    <tr>
+                        <td><img src="{{item.product.product_image.url}}" height="75px"alt="{{item.product.name}}"></td>
+                        <td>{{item.product.name}}</td>
+                        <td>{{item.product.selling_price | stringformat:'d'}}</td>
+                        <td><a href="{% url 'remove_fav' item.id %}" onclick="return confirm('Are You Sure? to Remove')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Remove</a></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+{%endblock content%}
